@@ -14,74 +14,87 @@
 			</div>
 			<div class="calculator-content-body">
 				<div class="calculator-content-body-left">
-					<div class="calculator-content-body-left-inputs">
-						<div class="input-wrapper">
-							<div class="title">Стоимость</div>
-							<div class="input">
-								<input type="number" id="total-cost" value="0" class="input-value">
-							</div>
-							<div class="input">
-								<input type="range" min="0" max="10000000" id="total-cost-range" value="0" class="input-range">
-							</div>
+					<div class="input-wrapper">
+						<div class="title">Стоимость</div>
+						<div class="input">
+							<input type="number" id="total-cost" value="0" class="input-value"><span>₽</span>
 						</div>
-						<div class="input-wrapper">
-							<div class="title">Первоначальный взнос</div>
-							<div class="input">
-								<input type="number" id="an-initial-fee" value="0" class="input-value">
-							</div>
-							<div class="input">
-								<input type="range" min="0" max="1000000" id="an-initial-fee-range" value="0" class="input-range">
-							</div>
-						</div>
-						<div class="input-wrapper">
-							<div class="title">Срок кредита</div>
-							<div class="input">
-								<input type="number" id="credit-term" value="0" class="input-value">
-							</div>
-							<div class="input">
-								<input type="range" min="1" max="20" id="credit-term-range" value="0" class="input-range">
-							</div>
+						<div class="input">
+							<input type="range" min="0" max="20000000" id="total-cost-range" value="0" class="input-range">
 						</div>
 					</div>
-					<div class="calculator-content-title">
-						<h2>Выбрать процент</h2>
+					<div class="input-wrapper">
+						<div class="title">Первоначальный взнос</div>
+						<div class="input">
+							<input type="number" id="an-initial-fee" value="0" class="input-value"><span>₽</span>
+						</div>
+						<div class="input">
+							<input type="range" min="0" max="15000000" id="an-initial-fee-range" value="0" class="input-range">
+						</div>
+						<div class="buttons">
+							<button data-name="10" class="fee">
+								<div class="value">10%</div>
+							</button>
+							<button data-name="15" class="fee">
+								<div class="value">15%</div>
+							</button>
+							<button data-name="20" class="fee">
+								<div class="value">20%</div>
+							</button>
+							<button data-name="25" class="fee">
+								<div class="value">25%</div>
+							</button>
+							<button data-name="30" class="fee">
+								<div class="value">30%</div>
+							</button>
+						</div>
 					</div>
-					<div class="calculator-content-body-left-btns">
-						<button data-name="10" class="bank active">
-							<div class="text">10</div>
-							<div class="value">10%</div>
-						</button>
-						<button data-name="15" class="bank">
-							<div class="text">15</div>
-							<div class="value">15%</div>
-						</button>
-						<button data-name="20" class="bank">
-							<div class="text">20</div>
-							<div class="value">20%</div>
-						</button>
-						<button data-name="25" class="bank">
-							<div class="text">25</div>
-							<div class="value">25%</div>
-						</button>
-						<button data-name="30" class="bank">
-							<div class="text">30</div>
-							<div class="value">30%</div>
-						</button>
+					<div class="input-wrapper">
+						<div class="title">Срок кредита</div>
+						<div class="input">
+							<input type="number" id="credit-term" value="0" class="input-value"><span>лет</span>
+						</div>
+						<div class="input">
+							<input type="range" min="1" max="10" id="credit-term-range" value="0" class="input-range">
+						</div>
+					</div>
+					<div class="input-wrapper">
+						<div class="title">Процентная ставка</div>
+						<div class="input">
+							<input type="number" id="interest-rate" value="4" class="input-value"><span>%</span>
+						</div>
+						<div class="input">
+							<input type="range" min="4" max="30" id="interest-rate-range" value="4" class="input-range">
+						</div>
+					</div>
+					<div class="input-wrapper">
+						<div class="controls">
+							<button class="control" id="save-btn">
+								<div class="control-content">Save</div>
+							</button>
+							<button class="control" id="cancel-btn">
+								<div class="control-content">Cancel</div>
+							</button>
+						</div>
 					</div>
 				</div>
 				<div class="calculator-content-body-right">
 					<div class="final-results-wrapper">
 						<div class="final-results-item">
 							<div class="title">Сумма кредита</div>
-							<div class="value" id="amount-of-credit">0<span>₽</span></div>
+							<div class="value" id="amount-of-credit">0 ₽</div>
+						</div>
+						<div class="final-results-item">
+							<div class="title">Переплата</div>
+							<div class="value" id="overpay">0 ₽</div>
 						</div>
 						<div class="final-results-item">
 							<div class="title">Ежемесячный платеж</div>
-							<div class="value" id="monthly-payment">0<span>₽</span></div>
+							<div class="value" id="monthly-payment">0 ₽</div>
 						</div>
 						<div class="final-results-item">
 							<div class="title">Рекомендуемый доход</div>
-							<div class="value" id="recommended-income">0<span>₽</span></div>
+							<div class="value" id="recommended-income">0 ₽</div>
 						</div>
 					</div>					
 				</div>
