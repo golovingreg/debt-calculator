@@ -165,13 +165,10 @@ const getItems = () => {
 		const parsedRate = parseInt(rate, 10);
 		interestRate.value = parsedRate;
 	}
-
-	calculate(totalCost.value, anInitialFee.value, creditTerm.value, interestRate.value);
-
 }
 
 getItems();
-
+calculate(totalCost.value, anInitialFee.value, creditTerm.value, interestRate.value);
 
 
 
