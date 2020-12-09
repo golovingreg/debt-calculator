@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Калькулятор</title>
+</head>
+<body>
+	<div class="flex-wrapper">
+		<div class="calculator-content">
+			<div class="calculator-content-title">
+				<h1>Кредитный калькулятор</h1>
+			</div>
+			<div class="calculator-content-body">
+				<div class="calculator-content-body-left">
+					<div class="calculator-content-body-left-inputs">
+						<div class="input-wrapper">
+							<div class="title">Стоимость</div>
+							<div class="input">
+								<input type="number" id="total-cost" value="0" class="input-value">
+							</div>
+							<div class="input">
+								<input type="range" min="0" max="10000000" id="total-cost-range" value="0" class="input-range">
+							</div>
+						</div>
+						<div class="input-wrapper">
+							<div class="title">Первоначальный взнос</div>
+							<div class="input">
+								<input type="number" id="an-initial-fee" value="0" class="input-value">
+							</div>
+							<div class="input">
+								<input type="range" min="0" max="1000000" id="an-initial-fee-range" value="0" class="input-range">
+							</div>
+						</div>
+						<div class="input-wrapper">
+							<div class="title">Срок кредита</div>
+							<div class="input">
+								<input type="number" id="credit-term" value="0" class="input-value">
+							</div>
+							<div class="input">
+								<input type="range" min="1" max="20" id="credit-term-range" value="0" class="input-range">
+							</div>
+						</div>
+					</div>
+					<div class="calculator-content-title">
+						<h2>Выбрать процент</h2>
+					</div>
+					<div class="calculator-content-body-left-btns">
+						<button data-name="10" class="bank active">
+							<div class="text">10</div>
+							<div class="value">10%</div>
+						</button>
+						<button data-name="15" class="bank">
+							<div class="text">15</div>
+							<div class="value">15%</div>
+						</button>
+						<button data-name="20" class="bank">
+							<div class="text">20</div>
+							<div class="value">20%</div>
+						</button>
+						<button data-name="25" class="bank">
+							<div class="text">25</div>
+							<div class="value">25%</div>
+						</button>
+						<button data-name="30" class="bank">
+							<div class="text">30</div>
+							<div class="value">30%</div>
+						</button>
+					</div>
+				</div>
+				<div class="calculator-content-body-right">
+					<div class="final-results-wrapper">
+						<div class="final-results-item">
+							<div class="title">Сумма кредита</div>
+							<div class="value" id="amount-of-credit">0<span>₽</span></div>
+						</div>
+						<div class="final-results-item">
+							<div class="title">Ежемесячный платеж</div>
+							<div class="value" id="monthly-payment">0<span>₽</span></div>
+						</div>
+						<div class="final-results-item">
+							<div class="title">Рекомендуемый доход</div>
+							<div class="value" id="recommended-income">0<span>₽</span></div>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>		
+	</div>
+	<script src="main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
