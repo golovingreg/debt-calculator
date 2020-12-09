@@ -4,12 +4,6 @@ const totalCost = document.getElementById('total-cost'),
 	  creditTerm = document.getElementById('credit-term'),
 	  interestRate = document.getElementById('interest-rate');
 
-// Range inputs
-const totalCostRange = document.getElementById('total-cost-range'),
-	  anInitialFeeRange = document.getElementById('an-initial-fee-range'),
-	  creditTermRange = document.getElementById('credit-term-range'),
-	  interestRateRange = document.getElementById('interest-rate-range');
-
 // Results
 const amountOfCredit = document.getElementById('amount-of-credit'),
 	  displayMonthlyPayment = document.getElementById('monthly-payment'),
@@ -18,34 +12,11 @@ const amountOfCredit = document.getElementById('amount-of-credit'),
 
 // All inputs and buttons
 const inputValue = document.querySelectorAll('.input-value');
-const inputRange = document.querySelectorAll('.input-range');
-const bankBtns = document.querySelectorAll('.bank');
 const feeBtns = document.querySelectorAll('.fee');
 
 // Controls
 const saveBtn = document.getElementById('save-btn'),
 	  cancelBtn = document.getElementById('cancel-btn');
-
-
-const currentFee = 0;
-
-const assignValue = () => {
-	totalCost.value = totalCostRange.value;
-	anInitialFee.value = anInitialFeeRange.value;
-	creditTerm.value = creditTermRange.value;
-	interestRate.value = interestRateRange.value;
-};
-
-const assignRange = () => {
-	totalCostRange.value = totalCost.value;
-	anInitialFeeRange.value = anInitialFee.value;
-	creditTermRange.value = creditTerm.value;
-	interestRateRange.value = interestRate.value;
-}
-
-assignValue();
-assignRange();
-
 
 const fees = [
 	{
@@ -89,7 +60,6 @@ const takeActiveFee = (active) => {
 	
 	anInitialFee.value = Math.round(( totalCost.value / 100 ) * currentFee.fee)
 
-	anInitialFeeRange.value = anInitialFee.value
 	btnActive = true;
 	btnValue = currentFee.fee;
 
@@ -98,35 +68,25 @@ const takeActiveFee = (active) => {
 
 const useActiveFee = () => {
 	anInitialFee.value = Math.round(( totalCost.value / 100 ) * btnValue);
-	anInitialFeeRange.value = Math.round(( totalCost.value / 100 ) * btnValue);
-}
-
-
-for (item of inputRange) {
-	item.addEventListener('input', () => {
-		if (btnActive) {
-			useActiveFee();
-			assignValue();
-			calculate(totalCost.value, anInitialFee.value, creditTerm.value, interestRate.value);
-		} else {
-			assignValue();
-			calculate(totalCost.value, anInitialFee.value, creditTerm.value, interestRate.value);
-		}
-	});
 }
 
 for (item of inputValue) {
 	item.addEventListener('input', () => {
 		if (btnActive) {
 			useActiveFee();
-			assignRange();
 			calculate(totalCost.value, anInitialFee.value, creditTerm.value, interestRate.value);
 		} else {
-			assignRange();
 			calculate(totalCost.value, anInitialFee.value, creditTerm.value, interestRate.value);
 		}
 	})
 }
+
+anInitialFee.addEventListener('input', () => {
+	btnActive = false;
+	for (let item of feeBtns) {
+		item.classList.remove('active');
+	}
+})
 
 const calculate = (totalCost = 0, anInitialFee = 0, creditTerm = 1, interestRate = 10) => {
 	// ЕП - Ежемесячный платеж
@@ -146,10 +106,10 @@ const calculate = (totalCost = 0, anInitialFee = 0, creditTerm = 1, interestRate
 	const monthlyPaymentRound = Math.round(monthlyPayment);
 	const recommendedIncomeRound = Math.round(monthlyPaymentRound + ( (monthlyPaymentRound / 100) * 35 ));
 	if (monthlyPaymentRound >= 0 && loan >= 0 && recommendedIncomeRound >= 0) {
-		amountOfCredit.innerHTML = `${loan} ₽`;
-		displayMonthlyPayment.innerHTML = `${monthlyPaymentRound} ₽`;
-		overpay.innerHTML = `${( monthlyPaymentRound * months ) - loan} ₽`
-		recommendedIncome.innerHTML = `${recommendedIncomeRound} ₽`
+		amountOfCredit.innerHTML = `${loan.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`;
+		displayMonthlyPayment.innerHTML = `${monthlyPaymentRound.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`;
+		overpay.innerHTML = `${(( monthlyPaymentRound * months ) - loan).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`
+		recommendedIncome.innerHTML = `${recommendedIncomeRound.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`
 	} else {
 		return false
 	}
@@ -160,10 +120,7 @@ const cancel = () => {
 	anInitialFee.value = 0;
 	creditTerm.value = 1;
 	interestRate.value = 4;
-	totalCostRange.value = 0;
-	anInitialFeeRange.value = 0;
-	creditTermRange.value = 1;
-	interestRateRange.value = 4;
+	btnActive = false;
 	calculate(totalCost.value, anInitialFee.value, creditTerm.value, interestRate.value);
 	for (let item of feeBtns) {
 			item.classList.remove('active');
@@ -175,25 +132,42 @@ const save = () => {
 	localStorage.setItem('fee', anInitialFee.value.toString());
 	localStorage.setItem('term', creditTerm.value.toString());
 	localStorage.setItem('rate', interestRate.value.toString());
-	localStorage.setItem('costRange', totalCostRange.value.toString());
-	localStorage.setItem('feeRange', anInitialFeeRange.value.toString());
-	localStorage.setItem('termRange', creditTermRange.value.toString());
-	localStorage.setItem('rateRange', interestRateRange.value.toString());
 }
 
 saveBtn.addEventListener('click', () => {
 	save();
-	console.log('success');
+	console.log('inputs saved');
 })
 
 cancelBtn.addEventListener('click', () => {
 	cancel();
 });
 
-const checkForItems = () => {
-	
+const getItems = () => {
+	const cost = localStorage.getItem('cost');
+	const fee = localStorage.getItem('fee');
+	const term = localStorage.getItem('term');
+	const rate = localStorage.getItem('rate');
+
+	if (cost) {
+		const parsedCost = parseInt(cost, 10);
+		totalCost.value = parsedCost;
+	} 
+	if (fee) {
+		const parsedFee = parseInt(fee, 10);
+		anInitialFee.value = parsedFee;
+	}
+	if (term) {
+		const parsedTerm = parseInt(term, 10);
+		creditTerm.value = parsedTerm;
+	} 
+	if (rate) {
+		const parsedRate = parseInt(rate, 10);
+		interestRate.value = parsedRate;
+	}
 }
 
+getItems();
 
 
 

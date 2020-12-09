@@ -60,6 +60,7 @@ input[type="number"]:focus {
 
 .input-wrapper .input {
 	position: relative;
+	margin-bottom: 5px;
 }
 
 .input-wrapper .input input {
@@ -92,6 +93,7 @@ input[type="number"]:focus {
 	background-color: #DADADA;
 	padding: 15px;
 	border-radius: 10px;
+	width: 300px;
 }
 
 .final-results-item {
